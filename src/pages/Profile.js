@@ -97,13 +97,19 @@ class Profile extends Component {
           <div className="profile-picture" style={profileStyle}></div>
           <div className="timeline-container">
             <ul className="left">
-              <li>Reputation</li>
-              {account.voting_weight &&
+              {account.level !== undefined &&
+                <li>Level</li>
+              }
+              {account.hcs !== undefined &&
+                <li>Hunt Curation Score</li>
+              }
+              {account.voting_weight !== undefined &&
                 <li>Voting Weight</li>
               }
-              {account.diversity_score &&
-                <li>Diversity Score</li>
+              {account.diversity_score !== undefined &&
+                <li>Voting Diversity Score</li>
               }
+              <li>Reputation</li>
               <li>Followers</li>
               <li>Steem Power</li>
               <li>Current Voting Power</li>
@@ -111,15 +117,19 @@ class Profile extends Component {
             </ul>
 
             <Timeline>
-              <Timeline.Item>
-                {account.reputation}
-              </Timeline.Item>
-              {account.voting_weight &&
+              {account.level !== undefined &&
+                <Timeline.Item>{account.level}</Timeline.Item>
+              }
+              {account.hcs !== undefined &&
+                <Timeline.Item>{formatNumber(account.hcs, '0,0')}</Timeline.Item>
+              }
+              {account.voting_weight !== undefined &&
                 <Timeline.Item>x{formatNumber(account.voting_weight * 100)}</Timeline.Item>
               }
-              {account.diversity_score &&
+              {account.diversity_score !== undefined &&
                 <Timeline.Item>{formatNumber(account.diversity_score)}</Timeline.Item>
               }
+              <Timeline.Item>{account.reputation}</Timeline.Item>
               <Timeline.Item><FollowerCount author={account.name} unit="followers" /></Timeline.Item>
               <Timeline.Item><UserSteemPower account={account} /></Timeline.Item>
               <Timeline.Item>{parseInt(account.voting_power / 100, 10)}%</Timeline.Item>

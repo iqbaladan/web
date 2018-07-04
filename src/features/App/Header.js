@@ -102,7 +102,7 @@ class Header extends Component {
           </Menu.Item>
           <Menu.Item key="3">
             <Link to={`/author/@${me}`} onClick={() => this.changeVisibility(false)}>
-              <Icon type="user" /> MY PROFILE
+              <Icon type="user" /> MY PROFILE (LV. {myAccount.level})
             </Link>
           </Menu.Item>
           <Menu.Item key="4">
